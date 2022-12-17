@@ -134,7 +134,7 @@ euro <- as_tibble(read_csv(here("data","eurovision.csv")))
 
 ```
 
-# The number of times a country showed up in high-ranking sections
+The number of times a country showed up in high-ranking sections
 
 i.e., finals, semifinals etc.
 
