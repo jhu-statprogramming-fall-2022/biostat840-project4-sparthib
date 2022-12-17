@@ -4,6 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: scroll
+runtime: shiny    
 ---
 
 ```{r setup, include=FALSE}
@@ -113,6 +114,10 @@ g_3
 ```
 
 # Int 1 
+
+Column {.sidebar}
+-------------------------------------
+
 
 # Int 2
 
