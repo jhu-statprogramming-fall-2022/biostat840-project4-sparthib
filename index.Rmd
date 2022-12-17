@@ -178,40 +178,6 @@ renderPlot({
 
 # Analysis 
 
-For an example analysis using `tidylog` I'll be using the `eurovision` dataset found in `tidytuesday`. The dataset and dictionary can be found [here.](https://github.com/rfordatascience/tidytuesday/tree/master/data/2022/2022-05-17)
-
-LOAD LIBRARIES
-
-```{R}
-
-library(here)
-library(readr)
-library(dplyr)
-library(ggplot2)
-library(here)
-library(tidyr)
-library(purrr)
-library("tidylog")
-```
-
-SAVE DATA
-
-```{R}
-
-
-if(!file.exists(here("data"))){
-  dir.create(here("data"))
-}
-url<- "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-05-17/eurovision.csv"
-if(!file.exists(here("data", "eurovision.csv"))){
-  download.file(url, here("data", "eurovision.csv"))
-}
-
-
-```
-
-LOAD DATA
-
 Goal of the analysis is to define the success of countries.
 
 We'll be looking at the number of times countries came up as finalists.
