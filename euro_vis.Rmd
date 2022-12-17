@@ -8,6 +8,15 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(here)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(here)
+library(tidyr)
+library(purrr)
+library(DT)
+library(shiny)
 ```
 
 
@@ -24,37 +33,38 @@ https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-05-17/
 # Data 
 stuff https://rsconnect.biostat.jhsph.edu/ocs-bp-school-shootings-dashboard/#section-the-data
 
+```{R}
+
+
+if(!file.exists(here("data"))){
+  dir.create(here("data"))
+}
+url<- "https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-05-17/eurovision.csv"
+if(!file.exists(here("data", "eurovision.csv"))){
+  download.file(url, here("data", "eurovision.csv"))
+}
+
+
+```
+
+```{R }
+euro <- read_csv(here("data", "eurovision.csv"))
+
+euro |> head(100) |> DT::datatable()
+
+```
+
 # Static 1
+
+## Column 1 
+
+### First chart 
+
+
+## Column 2 
 
 # Static 2
 
 # Int 1 
 
 #Int 2
-
-# Chart 1 
-
-Column {data-width=650}
------------------------------------------------------------------------
-
-### Chart A
-
-```{r}
-
-```
-
-Column {data-width=350}
------------------------------------------------------------------------
-
-### Chart B
-
-```{r}
-
-```
-
-### Chart C
-
-```{r}
-
-```
-
