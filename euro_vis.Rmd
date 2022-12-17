@@ -31,7 +31,9 @@ https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-05-17/
 
 
 # Data 
-stuff https://rsconnect.biostat.jhsph.edu/ocs-bp-school-shootings-dashboard/#section-the-data
+
+This is what the data looks like. The raw file can be downloaded from 
+https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-05-17/eurovision.csv
 
 ```{R}
 
