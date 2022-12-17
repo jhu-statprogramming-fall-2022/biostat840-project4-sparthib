@@ -79,6 +79,39 @@ g
 
 # Static 2
 
+Column {.tabset}
+-------------------------------------
+   
+### Chart 2
+
+```{r}
+
+euro$rank_lgl <- euro$rank |> map_lgl(function(x) x<=5)
+
+euro_true <- euro |> group_by(rank_lgl, artist_country) |> summarise(n = n()) |> filter(rank_lgl == TRUE)
+euro_false <- euro |> group_by(rank_lgl, artist_country) |> summarise(n = n()) |> filter(rank_lgl == FALSE)
+
+
+euro_true_and_false <- inner_join(euro_true, euro_false, by = "artist_country")
+euro_true_and_false <- euro_true_and_false |> mutate(prop = n.x/(n.x + n.y) )
+
+
+
+g_2 <- ggplot(euro_true_and_false, aes(x = artist_country, y = prop)) + geom_point() +scale_x_discrete(label=abbreviate) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 6)) + labs(title= "Proportion of instances where country was Top 5", subtitle= " 47 countries", caption = "sourced from tidytuesday")
+g_2
+
+```   
+ 
+### Chart 3
+    
+```{r}
+euro_won <- euro |> group_by(winner, artist_country) |> summarise(n = n()) |> filter(winner == TRUE)
+g_3 <- ggplot(euro_won, aes(x = n)) + geom_dotplot(binwidth = 0.5) +scale_x_discrete(label=abbreviate) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 6)) + labs(title= "Frequency of number of times countries won", subtitle= "49 countries", caption = "sourced from tidytuesday")
+g_3
+```
+
 # Int 1 
 
 # Int 2
@@ -90,7 +123,7 @@ For an example analysis using `tidylog` I'll be using the `eurovision` dataset f
 
 LOAD LIBRARIES
 
-```{R}
+```{R, echo = TRUE}
 
 library(here)
 library(readr)
@@ -104,7 +137,7 @@ library("tidylog")
 
 SAVE DATA
 
-```{R}
+```{R, echo = TRUE}
 
 
 if(!file.exists(here("data"))){
