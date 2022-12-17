@@ -13,17 +13,24 @@ library(flexdashboard)
 
 # About 
 
-This is a fun dashboard about that utilizes the `eurovision` dataset found on `tidytuesday`. 
-
-
-
-# Data 
-
 Eurovision is a popular music computation that includes many teams from all over 
 Europe each representing their nation. It's been on for several decades. The dataset
 consists info on all teams that have participated since 1951 and their rankings.
 More information about them can be found here. 
 https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-05-17/readme.md
+
+
+
+# Data 
+stuff https://rsconnect.biostat.jhsph.edu/ocs-bp-school-shootings-dashboard/#section-the-data
+
+# Static 1
+
+# Static 2
+
+# Int 1 
+
+#Int 2
 
 # Chart 1 
 
