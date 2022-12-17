@@ -1,11 +1,13 @@
 name: biostat840-project4-sparthib
-title:
+title: biostat840-project4-sparthib
 username:
 account: sparthib
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7908080
-bundleId: 6646914
+bundleId: 6646938
 url: https://sparthib.shinyapps.io/biostat840-project4-sparthib/
-when: 1671248742.63197
-lastSyncTime: 1671248742.632
+when: 1671249712.88185
+lastSyncTime: 1671249712.88187
+asMultiple: FALSE
+asStatic: FALSE
