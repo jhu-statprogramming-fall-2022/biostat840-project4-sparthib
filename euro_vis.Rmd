@@ -3,7 +3,7 @@ title: "Eurovision"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
-    vertical_layout: fill
+    vertical_layout: scroll
 ---
 
 ```{r setup, include=FALSE}
@@ -63,7 +63,7 @@ Row {data-height=650}
 
 ### First chart 
 
-```{R }
+```{R, echo = FALSE}
 
 euro_sections <- euro |> select(artist_country, section)
 euro_sections <- euro_sections |> group_by(artist_country, section) |> summarise(n = n())
@@ -189,7 +189,16 @@ euro_sections_2 <- euro_sections |> group_by(section)
 
 ```
 
-```{R, echo=TRUE }
+```{R, echo = TRUE }
+
+euro_sections <- euro |> select(artist_country, section)
+euro_sections <- euro_sections |> group_by(artist_country, section) |> summarise(n = n())
+euro_sections_2 <- euro_sections |> group_by(section)
+
+
+```
+
+```{R, echo = TRUE }
 split_euro <- group_split(euro_sections_2)
 
 final_countries <- split_euro |> purrr::map(function(x) x[which.max(x$n), ])
@@ -231,9 +240,10 @@ final_countries <- split_euro |> purrr::map(function(x) x[which.max(x$n), ])
 
 Turns out that Germany has been in the finals 48 times so far and France has been in the grand-final 19 times!
 
-Plot Histogram
 
-```{R }
+### Plot Histogram
+
+```{R, echo =FALSE}
 g <- ggplot(euro_sections, aes(x = artist_country, y = n )) + geom_bar(stat = "identity")+ 
   facet_wrap(~section)+
   scale_x_discrete(label=abbreviate) +
@@ -242,7 +252,9 @@ g
 
 ```
 
-```{R}
+### Cleaning 
+
+```{R, echo = TRUE}
 
 euro$rank_lgl <- euro$rank |> map_lgl(function(x) x<=5)
 
@@ -271,28 +283,31 @@ euro_true_and_false <- euro_true_and_false |> mutate(prop = n.x/(n.x + n.y) )
  
 ```
 
-Let's look at proportion of instances where country was top 5
+Let's look at proportion of instances where country was top 5.
 
-```{R proportion}
+
+### Proportion
+```{R proportion, echo = FALSE}
 
 g_2 <- ggplot(euro_true_and_false, aes(x = artist_country, y = prop)) + geom_point() +scale_x_discrete(label=abbreviate) +
     theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 6)) + labs(title= "Proportion of instances where country was Top 5", subtitle= " 47 countries", caption = "sourced from tidytuesday")
 g_2
 ```
 
-```{R}
+
+### Plot Histogram
+```{R , echo = FALSE}
 euro_won <- euro |> group_by(winner, artist_country) |> summarise(n = n()) |> filter(winner == TRUE)
 g_3 <- ggplot(euro_won, aes(x = n)) + geom_dotplot(binwidth = 0.5) +scale_x_discrete(label=abbreviate) +
     theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 6)) + labs(title= "Frequency of number of times countries won", subtitle= "49 countries", caption = "sourced from tidytuesday")
 g_3
 ```
 
-Functions used
+### Functions used
 
 1.  dplyr:: distinct, across, select , group_by, summarise, n, group_split, inner_join, mutate
 
 2.  purrr:: map, map_lgl
 
 3.  ggplot:: geom_bar, geom_point, geom_dotplot
-
 
