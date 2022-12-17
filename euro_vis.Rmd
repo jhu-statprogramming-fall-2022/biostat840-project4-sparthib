@@ -146,6 +146,34 @@ renderPlot({
 
 # Int 2
 
+Column {.sidebar}
+-------------------------------------
+
+Drop down menu for countries
+```{R}
+selectInput("country", label = "Countries ranking over time",
+            choices = euro |> pull(artist_country) |>
+              unique() |> sort(), selected = "Turkey") 
+```
+
+Column 
+-------------------------------------
+```{R}
+
+renderPlot({ 
+  country <- euro |> filter(artist_country == input$country ) 
+  
+  
+  title1 <- paste0("Rankings for ", input$country, " over the years")
+  sub1 <- paste0("from ", as.character(min(country$year)),  " to ", as.character(max(country$year)))
+  
+  
+  ggplot(country, aes(x = year, y = rank)) + geom_point() + labs(title= title1, subtitle= sub1, caption = "sourced from tidytuesday")
+  
+})
+
+
+```
 
 # Analysis 
 
