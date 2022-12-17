@@ -118,6 +118,31 @@ g_3
 Column {.sidebar}
 -------------------------------------
 
+Histogram counting number of times each country appeared in the top 5 ranks 
+
+```{R }
+
+selectInput("ranks", label = "Toggle between top 5 ranks",
+            choices = c(1, 2,3,4,5), selected = 1 )
+
+```
+
+
+Column 
+-------------------------------------
+```{R}
+
+renderPlot({
+  
+  ranks <- euro |> filter(rank == input$ranks ) |> count(artist_country) 
+  title1 <- paste0("Frequency of number of times countries came rank ", as.character(input$ranks))
+  sub1 <- paste0( as.character(nrow(ranks)),  " countries")
+    
+  ggplot(ranks, aes(x = artist_country, y = n)) + geom_bar(stat = "identity") + scale_x_discrete(label=abbreviate) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5, size = 10)) + labs(title= title1, subtitle= sub1, caption = "sourced from tidytuesday")
+})
+
+```
 
 # Int 2
 
