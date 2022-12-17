@@ -123,7 +123,7 @@ For an example analysis using `tidylog` I'll be using the `eurovision` dataset f
 
 LOAD LIBRARIES
 
-```{R, echo = TRUE}
+```{R}
 
 library(here)
 library(readr)
@@ -137,7 +137,7 @@ library("tidylog")
 
 SAVE DATA
 
-```{R, echo = TRUE}
+```{R}
 
 
 if(!file.exists(here("data"))){
