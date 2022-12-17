@@ -13,6 +13,7 @@ library(flexdashboard)
 
 # About 
 
+This is a fun dashboard about that utilizes the `eurovision` dataset found on `tidytuesday`. 
 
 
 
